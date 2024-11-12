@@ -24,11 +24,11 @@ jobs:
       - name: Build the Angular app
         run: npm run build --prod
 
-      - name: List contents of dist/flipbook
-        run: ls -l dist/flipbook
+      - name: List contents of dist/flipbook/browser
+        run: ls -l dist/flipbook/browser
 
       - name: Deploy to GitHub Pages
         run: |
-          npx angular-cli-ghpages --dir=dist/flipbook/browser --verbose
+          npx angular-cli-ghpages --dir=dist/flipbook/browser
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
