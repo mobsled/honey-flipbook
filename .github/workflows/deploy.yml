@@ -36,15 +36,20 @@ jobs:
       - name: Check contents of dist/flipbook/browser
         run: ls -l dist/flipbook/browser
 
-      # Set git user name and email for commits
+      # Set git config user
       - name: Set git config user
         run: |
-          git config --global user.email "mobsled@pm.me"
-          git config --global user.name "Martin Gajdos"
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
+
+      # Configure GitHub authentication with PAT
+      - name: Configure GitHub authentication
+        run: |
+          git config --global url."https://${{ secrets.MY_GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         run: |
           npx angular-cli-ghpages --dir=dist/flipbook/browser --no-silent
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
