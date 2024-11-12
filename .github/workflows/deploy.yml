@@ -33,14 +33,14 @@ jobs:
         run: ls -l dist/flipbook
 
       # Check if the dist/flipbook/browser folder exists
-      - name: Check contents of dist/flipbook/browser
-        run: ls -l dist/flipbook/browser
+      - name: Check contents of dist/flipbook/
+        run: ls -l dist/flipbook/
 
       # Set git config user
       - name: Set git config user
         run: |
-          git config --global user.email "you@example.com"
-          git config --global user.name "Your Name"
+          git config --global user.email "mobsled@pm.me"
+          git config --global user.name "Martin Gajdos"
 
       # Configure GitHub authentication with PAT
       - name: Configure GitHub authentication
@@ -50,6 +50,6 @@ jobs:
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         run: |
-          npx angular-cli-ghpages --dir=dist/flipbook/browser --no-silent
+          npx angular-cli-ghpages --dir=dist/flipbook --no-silent
         env:
           GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
