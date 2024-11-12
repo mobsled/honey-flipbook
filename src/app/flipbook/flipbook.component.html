@@ -1,0 +1,21 @@
+<div class="flipbook-container">
+    <!-- Flipbook Pages -->
+    <div class="flipbook">
+      <div class="page left">
+          <div class="content">
+              <p>{{ pages[currentPageIndex].text }}</p>
+          </div>
+      </div>
+  
+      <div class="page right">
+          <img [src]="pages[currentPageIndex].imageUrl" alt="{{ pages[currentPageIndex].imageUrl }}" style="max-width: 80%;"/>
+      </div>
+    </div>
+  
+    <!-- Controls: buttons under the pages -->
+    <div class="controls" style="z-index: 100000;">
+      <button (click)="prevPage()" [disabled]="currentPageIndex === 0">Previous</button>
+      <button (click)="nextPage()" [disabled]="currentPageIndex === pages.length - 1">Next</button>
+    </div>
+  </div>
+  

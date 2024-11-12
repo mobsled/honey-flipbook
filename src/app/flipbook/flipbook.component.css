@@ -1,0 +1,114 @@
+/* Container for the flipbook and controls */
+.flipbook-container {
+    display: flex;
+    flex-direction: column;  /* Stack flipbook and controls vertically */
+    height: 100vh;  /* Full height of the viewport */
+  }
+  
+  /* The flipbook pages container */
+  .flipbook {
+    display: flex;
+    flex-grow: 1;  /* Take up the remaining space */
+    width: 100%;
+    height: 100%;  /* Ensure it takes up the full height */
+    perspective: 1000px; /* Add 3D perspective for flip effect */
+  }
+  
+  /* Pages should take up half the width and full height */
+  .page {
+    width: 50%;  /* Set each page to be 50% of the width */
+    height: 100%;  /* Set height to 100% of the parent (flipbook) */
+    position: relative;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .page.left {
+    background: #f7f7f7;
+    display: flex;
+    flex-direction: column;  /* Stack content vertically */
+    align-items: flex-start;  /* Align content to the top */
+    justify-content: flex-start;  /* Keep content at the top */
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    overflow: hidden;
+    backface-visibility: hidden;
+    border-right: 1px solid #ccc;
+  }
+  
+  .page.right {
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    overflow: hidden;
+    backface-visibility: hidden;
+  }
+  
+  /* Styling for content inside left page */
+  .page .content {
+    max-width: 100%;
+    font-family: 'Georgia', serif;
+    font-size: 16px;
+    line-height: 1.0;
+    color: #333;
+    text-align: justify;
+    flex-grow: 1;  /* Allow content to grow and fill space */
+  }
+  
+  /* Ensure the image is responsive */
+  .page img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  /* Controls (buttons) styling */
+  .controls {
+    text-align: center;
+    padding: 10px;
+    background-color: #f1f1f1;
+    /* Ensure it stays at the bottom */
+    flex-shrink: 0;  /* Prevent the controls from shrinking */
+  }
+  
+  /* Buttons styling */
+  button {
+    padding: 10px;
+    margin: 0 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* CSS Flip Animation */
+  .page.left.flip {
+    transform: rotateY(180deg);
+    z-index: 1; /* Keep left page in front during flip */
+  }
+  
+  .page.right.flip {
+    transform: rotateY(0deg);
+    z-index: 2; /* Keep right page in front during flip */
+  }
+  
+  .pages {
+    display: flex;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+  
+  .pages.flip {
+    transform: rotateY(180deg);
+  }
+  
