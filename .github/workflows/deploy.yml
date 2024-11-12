@@ -29,6 +29,6 @@ jobs:
 
       - name: Deploy to GitHub Pages
         run: |
-          npx angular-cli-ghpages --dir=dist/flipbook/browser
+          npx angular-cli-ghpages --dir=dist/flipbook/browser --no-silent
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
