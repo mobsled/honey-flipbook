@@ -3,34 +3,32 @@ name: Deploy Angular App to GitHub Pages
 on:
   push:
     branches:
-      - master  # Ensure you're pushing to the master branch or the appropriate one
+      - master  # Or use main if that's your default branch
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout code from GitHub
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Step 2: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18'  # Use Node.js v18 or later
+          node-version: '18'
 
-      # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Build the Angular app
       - name: Build the Angular app
         run: npm run build --prod
 
-      # Step 5: Deploy to GitHub Pages
+      - name: List contents of dist/flipbook
+        run: ls -l dist/flipbook
+
       - name: Deploy to GitHub Pages
         run: |
-          npx angular-cli-ghpages --dir=dist/flipbook/browser
+          npx angular-cli-ghpages --dir=dist/flipbook/browser --verbose
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
