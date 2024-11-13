@@ -76,6 +76,7 @@ export class FlipbookComponent {
   prevPage() {
     if (this.currentPageIndex > 0) {
       this.currentPageIndex -= 1;
+      //test
     }
   }
 
